@@ -47,4 +47,6 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    implementation("com.airbnb.android:lottie:3.4.0")
+    implementation("pl.droidsonroids.gif:android-gif-drawable:1.2.17")
 }
