@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.appcompat.app.AlertDialog
 import androidx.core.widget.doOnTextChanged
 import androidx.navigation.fragment.findNavController
@@ -36,11 +37,11 @@ class BlankFragment2 : Fragment() {
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
-            email = it.getString("email")?:""
-            num1 = it.getString("num1")?:""
-            num2 = it.getString("num2")?:""
-            num3 = it.getString("num3")?:""
-            num4 = it.getString("num4")?:""
+            email = it.getInt("email").toString()
+            num1 = it.getInt("num1").toString()
+            num2 = it.getInt("num2").toString()
+            num3 = it.getInt("num3").toString()
+            num4 = it.getInt("num4").toString()
         }
     }
 
@@ -58,36 +59,45 @@ class BlankFragment2 : Fragment() {
         binding?.moveTof1?.setOnClickListener {
             findNavController().popBackStack(R.id.blankFragment2,true)
         }
-
+        binding?.btnmoveToF3?.setOnClickListener {
+            findNavController().navigate(R.id.action_blankFragment2_to_blankFragment3)
+        }
         binding?.et1?.doOnTextChanged{_,_,_,_->
-           var otp1 = binding?.et1?.text.toString()?:""
-            if(otp1.length==1){
+           var otp1 = binding?.et1?.text.toString()
+            if(otp1.length ==1){
                 binding?.et2?.requestFocus()
             }
         }
         binding?.et2?.doOnTextChanged{_,_,_,_->
-            var otp2 = binding?.et2?.text?.toString()?:""
-            if(otp2.length==1){
+            var otp2 = binding?.et2?.text?.toString()
+            if(otp2?.length==1){
                 binding?.et3?.requestFocus()
             }
         }
         binding?.et3?.doOnTextChanged{_,_,_,_->
-            var otp3 = binding?.et2?.text?.toString()?:""
-            if(otp3.length==1){
+            var otp3 = binding?.et2?.text?.toString()
+            if(otp3?.length==1){
                 binding?.et4?.requestFocus()
             }
         }
 
+
         binding?.submit?.setOnClickListener {
-            var enteredOTP = binding?.et1?.toString() + binding?.et2.toString() + binding?.et3?.toString() + binding?.et4?.toString()
-            var generatedOTP = (num1+num2+num3+num4).toString()
-            if(enteredOTP.equals(generatedOTP)==true){
+            var otp1 = binding?.et1?.toString()?.toInt()
+            var otp2 = binding?.et2?.toString()?.toInt()
+            val otp3 = binding?.et3.toString().toInt()
+            var otp4 = binding?.et4?.toString()?.toInt()
+
+            if((otp1== num1.toInt() &&otp2 == num2.toInt() &&otp3== num3.toInt() &&otp4== num4.toInt())==true){
                 Dialog(requireContext()).apply {
                     setContentView(R.layout.customdialog)
                     window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT)
                     show()
+                    var setNew = findViewById<Button>(R.id.btnSetNew)
+                    setNew.setOnClickListener {
+                        findNavController().navigate(R.id.blankFragment3)
+                    }
                 }
-
                 }else{
                     Dialog(requireContext()).apply {
                         setContentView(R.layout.sorrydialogbox)
@@ -102,14 +112,7 @@ class BlankFragment2 : Fragment() {
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment BlankFragment2.
-         */
+
 
         @JvmStatic
         fun newInstance(param1: String, param2: String) =

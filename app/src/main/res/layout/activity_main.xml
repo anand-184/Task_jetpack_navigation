@@ -14,6 +14,11 @@
         app:defaultNavHost="true"
         app:navGraph="@navigation/main_graph" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MAIN ACTIVITY"
+        android:layout_marginTop="200dp"/>
 
 
 </LinearLayout>

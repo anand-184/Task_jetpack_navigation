@@ -68,4 +68,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Submit" />
+    <Button
+        android:id="@+id/btnmoveToF3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Move to fragment 3"/>
 </LinearLayout>

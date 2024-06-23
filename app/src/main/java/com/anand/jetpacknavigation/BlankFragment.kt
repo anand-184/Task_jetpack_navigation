@@ -1,5 +1,7 @@
 package com.anand.jetpacknavigation
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -59,11 +61,20 @@ class BlankFragment : Fragment() {
 
                 var bundle = Bundle()
                 bundle.putString("email",binding?.etemail?.text?.toString())
-                bundle.putInt("num1",rnum1).toString()
-                bundle.putInt("num2",rnum2).toString()
-                bundle.putInt("num3",rnum3).toString()
-                bundle.putInt("num4",rnum4).toString()
+                bundle.putInt("num1",rnum1)
+                bundle.putInt("num2",rnum2)
+                bundle.putInt("num3",rnum3)
+                bundle.putInt("num4",rnum4)
                 findNavController().navigate(R.id.blankFragment2,bundle)
+                var intent = Intent(Intent.ACTION_SENDTO)
+                intent.setData(Uri.parse("mailto:${binding?.etemail}"))
+                intent.putExtra(Intent.EXTRA_TEXT,"$bundle")
+                startActivity(Intent.createChooser(intent,"Send Email"))
+
+
+
+
+
             }
 
 
