@@ -61,6 +61,7 @@ class BlankFragment : Fragment() {
 
                 var bundle = Bundle()
                 bundle.putString("email",binding?.etemail?.text?.toString())
+                bundle.putString("otp","$rnum1$rnum2$rnum3$rnum4")
                 bundle.putInt("num1",rnum1)
                 bundle.putInt("num2",rnum2)
                 bundle.putInt("num3",rnum3)
@@ -70,21 +71,7 @@ class BlankFragment : Fragment() {
                 intent.setData(Uri.parse("mailto:${binding?.etemail}"))
                 intent.putExtra(Intent.EXTRA_TEXT,"$bundle")
                 startActivity(Intent.createChooser(intent,"Send Email"))
-
-
-
-
-
             }
-
-
-
-
-
-
-
-
-
         }
     }
     fun isValidEmail(email: String): Boolean {

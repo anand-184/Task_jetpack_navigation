@@ -30,6 +30,7 @@ class BlankFragment2 : Fragment() {
     var num2 = ""
     var num3 = ""
     var num4 = ""
+    var otp = ""
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,6 +39,7 @@ class BlankFragment2 : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
             email = it.getInt("email").toString()
+            otp = it.getInt("otp").toString()
             num1 = it.getInt("num1").toString()
             num2 = it.getInt("num2").toString()
             num3 = it.getInt("num3").toString()
@@ -83,10 +85,10 @@ class BlankFragment2 : Fragment() {
 
 
         binding?.submit?.setOnClickListener {
-            var otp1 = binding?.et1?.toString()?.toInt()
-            var otp2 = binding?.et2?.toString()?.toInt()
-            val otp3 = binding?.et3.toString().toInt()
-            var otp4 = binding?.et4?.toString()?.toInt()
+            var otp1 = binding?.et1?.text?.toString()?.toInt()
+            var otp2 = binding?.et2?.text?.toString()?.toInt()
+            var otp3 = binding?.et3?.text?.toString()?.toInt()
+            var otp4 = binding?.et4?.text?.toString()?.toInt()
 
             if((otp1== num1.toInt() &&otp2 == num2.toInt() &&otp3== num3.toInt() &&otp4== num4.toInt())==true){
                 Dialog(requireContext()).apply {
