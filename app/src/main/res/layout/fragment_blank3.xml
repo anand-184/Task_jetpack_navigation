@@ -20,7 +20,7 @@
             android:layout_width="212dp"
             android:layout_height="wrap_content"
             android:hint="Enter New Password"
-            android:inputType="numberPassword"
+            android:inputType="textWebPassword"
             app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -45,7 +45,7 @@
                 android:layout_height="match_parent"
                 android:ems="15"
                 android:maxLength="8"
-                android:inputType="numberPassword" />
+                android:inputType="textWebPassword" />
 
 
         </com.google.android.material.textfield.TextInputLayout>
