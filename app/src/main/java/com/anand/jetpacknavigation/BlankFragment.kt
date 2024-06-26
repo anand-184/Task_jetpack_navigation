@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.AppBarConfiguration
 import com.anand.jetpacknavigation.databinding.FragmentBlankBinding
 import java.util.regex.Pattern
 import kotlin.random.Random
@@ -33,6 +34,7 @@ class BlankFragment : Fragment() {
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
+
         }
     }
 
@@ -43,6 +45,7 @@ class BlankFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentBlankBinding.inflate(layoutInflater)
         return binding?.root
+        
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

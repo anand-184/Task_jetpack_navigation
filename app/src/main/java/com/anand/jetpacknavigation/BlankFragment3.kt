@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.AppBarConfiguration
 import com.anand.jetpacknavigation.databinding.FragmentBlank3Binding
 
 
@@ -18,6 +20,7 @@ class BlankFragment3 : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     var binding: FragmentBlank3Binding? = null
+    lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,7 +48,6 @@ class BlankFragment3 : Fragment() {
             }
 
         }
-
     }
     companion object {
 
