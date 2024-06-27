@@ -3,6 +3,7 @@ package com.anand.jetpacknavigation
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Patterns
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -26,7 +27,6 @@ class BlankFragment : Fragment() {
     private var param2: String? = null
     var binding: FragmentBlankBinding? = null
     val email = ""
-    val emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\$"
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,8 +53,8 @@ class BlankFragment : Fragment() {
         binding?.moveTof2?.setOnClickListener {
             if (binding?.etemail?.text?.toString().isNullOrEmpty()){
                 binding?.etemail?.error = "Enter an Email"
-            }else if (isValidEmail(binding?.etemail?.text.toString())==false){
-                Toast.makeText(requireContext(),"Enter Valid Email",Toast.LENGTH_LONG).show()
+            }else if (!Patterns.EMAIL_ADDRESS.matcher(binding?.etemail?.text.toString()).matches()) {
+                binding?.etemail?.error = "Invalid email format"
             }
             else{
                 var rnum1 = Random.nextInt(0..9)
@@ -65,21 +65,16 @@ class BlankFragment : Fragment() {
                 var bundle = Bundle()
                 bundle.putString("email",binding?.etemail?.text?.toString())
                 bundle.putString("otp","$rnum1$rnum2$rnum3$rnum4")
-                bundle.putInt("num1",rnum1)
-                bundle.putInt("num2",rnum2)
-                bundle.putInt("num3",rnum3)
-                bundle.putInt("num4",rnum4)
                 findNavController().navigate(R.id.blankFragment2,bundle)
                 var intent = Intent(Intent.ACTION_SENDTO)
                 intent.setData(Uri.parse("mailto:${binding?.etemail}"))
-                intent.putExtra(Intent.EXTRA_TEXT,"$bundle")
+                intent.putExtra(Intent.EXTRA_TEXT,"OTP is $bundle")
+
                 startActivity(Intent.createChooser(intent,"Send Email"))
             }
         }
     }
-    fun isValidEmail(email: String): Boolean {
-        return email.matches(emailRegex.toRegex())
-    }
+
 
     companion object {
 

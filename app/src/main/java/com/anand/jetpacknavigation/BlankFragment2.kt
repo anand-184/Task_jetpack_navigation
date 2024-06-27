@@ -26,10 +26,6 @@ class BlankFragment2 : Fragment() {
     private var param2: String? = null
     var binding: FragmentBlank2Binding? = null
     var email = ""
-    var num1 = ""
-    var num2 = ""
-    var num3 = ""
-    var num4 = ""
     var otp = ""
 
 
@@ -38,12 +34,8 @@ class BlankFragment2 : Fragment() {
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
-            email = it.getInt("email").toString()
+            email = it.getString("email")?:""
             otp = it.getInt("otp").toString()
-            num1 = it.getInt("num1").toString()
-            num2 = it.getInt("num2").toString()
-            num3 = it.getInt("num3").toString()
-            num4 = it.getInt("num4").toString()
         }
     }
 
@@ -58,12 +50,7 @@ class BlankFragment2 : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding?.tvemail?.text = email
-        binding?.moveTof1?.setOnClickListener {
-            findNavController().popBackStack(R.id.blankFragment2,true)
-        }
-        binding?.btnmoveToF3?.setOnClickListener {
-            findNavController().navigate(R.id.action_blankFragment2_to_blankFragment3)
-        }
+
         binding?.et1?.doOnTextChanged{_,_,_,_->
            var otp1 = binding?.et1?.text.toString()
             if(otp1.length ==1){
@@ -89,15 +76,17 @@ class BlankFragment2 : Fragment() {
             var otp2 = binding?.et2?.text?.toString()?.toInt()
             var otp3 = binding?.et3?.text?.toString()?.toInt()
             var otp4 = binding?.et4?.text?.toString()?.toInt()
-
-            if((otp1== num1.toInt() &&otp2 == num2.toInt() &&otp3== num3.toInt() &&otp4== num4.toInt())==true){
+            var enteredOtp = "$otp1$otp2$otp3$otp4"
+            if(otp == enteredOtp){
                 Dialog(requireContext()).apply {
                     setContentView(R.layout.customdialog)
                     window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT)
                     show()
                     var setNew = findViewById<Button>(R.id.btnSetNew)
                     setNew.setOnClickListener {
+                        dismiss()
                         findNavController().navigate(R.id.blankFragment3)
+
                     }
                 }
                 }else{

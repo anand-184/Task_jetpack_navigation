@@ -20,7 +20,6 @@ class BlankFragment3 : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     var binding: FragmentBlank3Binding? = null
-    lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,7 +40,7 @@ class BlankFragment3 : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding?.btnSetPass?.setOnClickListener {
-            if (binding?.etreenter?.toString()?.equals(binding?.etreenter?.toString()) == true) {
+            if (binding?.etPassword?.toString()?.equals(binding?.etRePassword?.toString()) == true) {
                 Toast.makeText(requireContext(),"Password Changed",Toast.LENGTH_LONG).show()
             }else{
                 Toast.makeText(requireContext(),"Password don't match",Toast.LENGTH_LONG).show()
